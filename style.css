@@ -17,3 +17,36 @@ body {
     align-items: center; /* align-items is used to align the elements along the vertical direction */
     justify-content: center; /* justify-content is used to align the elements along the horizontal direction */
 }
+
+.quote-container{
+    width:auto; /* width:auto <=> width: 100%*/
+    max-width: 900px;
+    padding: 20px 30px;
+    border-radius: 10px; /* corner of rectangle*/
+    background-color: rgba(225,225,225,0.4); /* rgba(...,...,...,opacity) <=> use this to make only background become blur*/
+    box-shadow: 0px 10px 10px 10px rgba(0,0,0,0.2);
+}
+
+.quote-text{
+    font-size: 44px; /* 1rem = 16px */
+    margin-bottom: 20px;
+}
+
+.fa-quote-left{
+    font-size: 4rem;
+}
+
+.quote-author{
+    font-size: 44px;
+    font-weight: 400;
+    font-style: italic;
+}
+
+@media screen and (max-width: 1000px){
+    .quote-container {
+        margin: auto 10px;
+    }
+    .quote-text{
+        font-size: 2.5rem;
+    }
+}
