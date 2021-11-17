@@ -85,6 +85,7 @@ button:active {
 }
 
 /* Loader */
+
 .loader {
   border: 16px solid #f3f3f3;
   border-radius: 50%;
@@ -95,19 +96,22 @@ button:active {
   /*animation is used to make movement in HTML*/
   /*animation: name_keyframe time_movement type_movement */
 }
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
   }
   25% {
-    border-top: rgb(255, 102, 102);
+    border-top:16px solid  rgb(255, 102, 102);
     transform: rotate(90deg);
   }
   50% {
-    color: rgb(255, 255, 126);
+    border-top:16px solid  rgb(214, 214, 72);
+    transform: rotate(180deg);
   }
   75% {
-    color: rgb(122, 253, 122);
+    border-top:16px solid  rgb(46, 207, 46);
+    transform: rotate(270deg);
   }
   100% {
     transform: rotate(360deg);
