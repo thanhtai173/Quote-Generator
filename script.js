@@ -8,12 +8,24 @@ const quoteleftId = document.getElementById("quote-left");
 const authorId = document.getElementById("author");
 const twitterBtn = document.getElementById("twitter");
 const newQuoteBtn = document.getElementById("new-quote");
+const loader = document.getElementById("loader");
+
+// Show loading
+function loading() {
+  loader.hidden = false; // hidden is default property for each element
+  quoteContainer.hidden = true;
+}
+// Hide Loading
+function hideloading() {
+  loader.hidden = true;
+  quoteContainer.hidden = false;
+}
 
 // Function show new quotes
 function newQuote(apiQuotes) {
+  //loading();
   let random = Math.trunc(Math.random() * apiQuotes.length + 1);
-  const { text, author } = apiQuotes[random];
-  authorId.textContent = author;
+  const { text, author } = apiQuotes[random]; // destructing array and object
   if (!author) {
     authorId.textContent = "Unknow";
   } else {
@@ -31,11 +43,21 @@ function newQuote(apiQuotes) {
     quoteleftId.classList.remove("fa-quote-long-quote");
   }
   quoteId.textContent = text;
+  //hideloading();
 }
 
 // Async function enable asynchronous, promise-based behavior to be written in a cleaner style,
 // avoiding the need to explicitly configure promise chains.
+
+// Use this trick delay function to delay one function in async function by using SetTimeOut()
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+let check = 0;
 async function GetAPI() {
+  loading();
+  await delay(2000);
   const apiUrl = "https://type.fit/api/quotes";
   try {
     const response = await fetch(apiUrl);
@@ -48,7 +70,9 @@ async function GetAPI() {
   } catch (error) {
     console.log(error);
   }
+  hideloading();
 }
+hideloading();
 GetAPI();
 // New Quote button
 document.querySelector("#new-quote").addEventListener("click", GetAPI);
