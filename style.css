@@ -84,6 +84,36 @@ button:active {
   color: #38a1f3;
 }
 
+/* Loader */
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+  /*animation is used to make movement in HTML*/
+  /*animation: name_keyframe time_movement type_movement */
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    border-top: rgb(255, 102, 102);
+    transform: rotate(90deg);
+  }
+  50% {
+    color: rgb(255, 255, 126);
+  }
+  75% {
+    color: rgb(122, 253, 122);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @media screen and (max-width: 1000px) {
   .quote-container {
     margin: auto 10px;
