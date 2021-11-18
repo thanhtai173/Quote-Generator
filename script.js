@@ -11,19 +11,18 @@ const newQuoteBtn = document.getElementById("new-quote");
 const loader = document.getElementById("loader");
 
 // Show loading
-function loading() {
+function showloading() {
   loader.hidden = false; // hidden is default property for each element
   quoteContainer.hidden = true;
 }
 // Hide Loading
 function hideloading() {
-  loader.hidden = true;
+  if (!loader.hidden) loader.hidden = true;
   quoteContainer.hidden = false;
 }
 
 // Function show new quotes
 function newQuote(apiQuotes) {
-  //loading();
   let random = Math.trunc(Math.random() * apiQuotes.length + 1);
   const { text, author } = apiQuotes[random]; // destructing array and object
   if (!author) {
@@ -32,7 +31,7 @@ function newQuote(apiQuotes) {
     authorId.textContent = author;
   }
 
-  console.log(text.length);
+  //console.log(text.length);
   if (text.length > 80) {
     // take length text of quote
     quoteId.classList.add("long-quote");
@@ -43,7 +42,6 @@ function newQuote(apiQuotes) {
     quoteleftId.classList.remove("fa-quote-long-quote");
   }
   quoteId.textContent = text;
-  //hideloading();
 }
 
 // Async function enable asynchronous, promise-based behavior to be written in a cleaner style,
@@ -51,13 +49,13 @@ function newQuote(apiQuotes) {
 
 // Use this trick delay function to delay one function in async function by using SetTimeOut()
 function delay(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 let check = 0;
 async function GetAPI() {
-  loading();
-  await delay(2000);
+  showloading();
+  await delay(2000); // 2000 ms
   const apiUrl = "https://type.fit/api/quotes";
   try {
     const response = await fetch(apiUrl);
@@ -72,7 +70,7 @@ async function GetAPI() {
   }
   hideloading();
 }
-hideloading();
+// Initializing first quote and author
 GetAPI();
 // New Quote button
 document.querySelector("#new-quote").addEventListener("click", GetAPI);
